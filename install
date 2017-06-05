@@ -8,7 +8,7 @@ if [ "$resposta" == "s" ] || [ "$resposta" == "S" ] || [ -z "$resposta" ]; then
 apt-get -y install git wget
 git clone https://github.com/JosephLinuxOf/vpsgen.git
 cd vpsgen
-rm $0
+rm install*
 chmod +x *
 mv * /bin/
 clear

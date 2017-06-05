@@ -1,0 +1,28 @@
+#!/bin/bash
+clear
+tput setaf 3; tput setab 6; tput bold; printf '%28s%s%-18s\n' "ALTERAR USUÁRIO SSH"; tput sgr0; 
+tput setaf 1; tput bold; read -p "Nome do Usuário: " usuario; tput sgr0; 
+
+erro=$(getent passwd | cut -d \: -f1 | grep -w $usuario | wc -l) 
+
+if [ "$erro" -ge "1" ]; then
+	tput setaf 1; tput bold; read -p "Senha: " senha; tput sgr0; 
+	tput setaf 1; tput bold; read -p "Quantos dias irá durar? " dias; tput sgr0;
+		if (echo $dias | egrep '[^0-9]' 1> /dev/null); then
+			tput setaf 3; tput bold; echo  "Insira uma data correta!"; tput sgr0;
+			exit 0
+		else
+		tput setaf 1; tput bold; read -p "Número de conexões simultâneas: " limite; tput sgr0;
+		validadebrasil=$(date '+%d/%m/%C%y' -d " +$dias days")
+		cat /root/usuarios.txt | grep -v $usuario > /root/arquivo.new 
+		mv /root/arquivo.new /root/usuarios.txt
+		passwd -x $dias $usuario 1> /dev/null
+		usermod -p $(openssl passwd -1 $senha) $usuario
+		echo "$usuario $limite" >> /root/usuarios.txt  
+		tput setaf 2; tput bold; echo "Usuário $usuario alterado com sucesso!"; tput sgr0;
+		tput setaf 2; tput bold; echo "Data de expiração $validadebrasil"; tput sgr0;
+	fi
+else
+	tput setaf 3; tput bold; echo  "Usuário Inexistente!"; tput sgr0;
+	exit 0
+fi

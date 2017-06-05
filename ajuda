@@ -1,0 +1,13 @@
+#!/bin/bash
+clear
+tput setaf 3; tput setab 6; tput bold; printf '%28s%s%-18s\n' "AJUDA"; tput sgr0; 
+
+tput setaf 3; tput bold; echo "Comandos disponíveis:"; tput sgr0; 
+
+tput setaf 2; tput bold; echo "zramstart - Habilitar memória swap"; tput sgr0;
+tput setaf 2; tput bold; echo "squidstart - Configurar o Squid Proxy"; tput sgr0;
+tput setaf 2; tput bold; echo "offtorrent - Bloquear Torrent"; tput sgr0; 
+tput setaf 2; tput bold; echo "criar - Criar e configurar usuários "; tput sgr0; 
+tput setaf 2; tput bold; echo "listar - Listar usuários conectados"; tput sgr0; 
+tput setaf 2; tput bold; echo "alterar - Alterar dados do usuário"; tput sgr0; 
+tput setaf 2; tput bold; echo "deletar - Deletar usuário permanentemente"; tput sgr0; 

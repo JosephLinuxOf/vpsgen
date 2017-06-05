@@ -1,0 +1,21 @@
+#!/bin/bash
+clear
+tput setaf 3; tput setab 6; tput bold; printf '%28s%s%-18s\n' "GERENCIAR DE VPS"; tput sgr0; 
+
+tput setaf 3; tput bold; read -p "Deseja instalar os pacotes de gerenciamento? s/n: " resposta; tput sgr0; 
+
+if [ "$resposta" == "s" ] || [ "$resposta" == "S" ] || [ -z "$resposta" ]; then
+apt-get -y install git wget
+git clone https://github.com/JosephLinuxOf/vpsgen.git
+cd vpsgen
+rm $0
+chmod +x *
+mv * /bin/
+clear
+ajuda
+
+else
+	tput setaf 2; tput bold; echo "Saindo..."; tput sgr0; 
+	exit
+fi
+

@@ -1,0 +1,5 @@
+iptables -F
+iptables --flush
+iptables -F INPUT
+iptables -t nat -F
+tput setaf 3; tput bold; echo "Torrent Liberado!"; tput sgr0; 

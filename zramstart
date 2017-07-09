@@ -67,7 +67,4 @@ chmod +x /etc/init.d/zram
 insserv zram
 
 /etc/init.d/zram start
-echo "" >> /root/.bashrc
-echo "/etc/init.d/zram start" >> /root/.bashrc
-
 exit 0
